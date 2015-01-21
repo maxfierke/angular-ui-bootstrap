@@ -77,6 +77,14 @@ All settings can be provided as attributes in the `datepicker` or globally confi
  	_(Default: 20)_ :
  	Number of years displayed in year selection.
 
+ * `prev-icon-class`
+ 	_(Default: 'glyphicon glyphicon-chevron-left')
+ 	Icon to use for 'previous' button.
+
+ * `next-icon-class`
+ 	_(Default: 'glyphicon glyphicon-chevron-right')
+ 	Icon to use for 'next' button.
+
 
 ### Popup Settings ###
 
