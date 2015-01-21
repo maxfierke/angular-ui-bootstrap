@@ -15,7 +15,9 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   yearRange: 20,
   minDate: null,
   maxDate: null,
-  shortcutPropagation: false
+  shortcutPropagation: false,
+  nextIconClass: 'glyphicon glyphicon-chevron-right',
+  prevIconClass: 'glyphicon glyphicon-chevron-left'
 })
 
 .controller('DatepickerController', ['$scope', '$attrs', '$parse', '$interpolate', '$timeout', '$log', 'dateFilter', 'datepickerConfig', function($scope, $attrs, $parse, $interpolate, $timeout, $log, dateFilter, datepickerConfig) {
@@ -58,6 +60,9 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   } else {
     this.activeDate =  new Date();
   }
+
+  $scope.nextIconClass = $scope.nextIconClass || datepickerConfig.nextIconClass;
+  $scope.prevIconClass = $scope.prevIconClass || datepickerConfig.prevIconClass;
 
   $scope.isActive = function(dateObject) {
     if (self.compare(dateObject.date, self.activeDate) === 0) {

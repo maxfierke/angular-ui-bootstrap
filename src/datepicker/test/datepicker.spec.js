@@ -1818,8 +1818,10 @@ describe('datepicker directive', function () {
   });
 
   describe('with empty initial state', function () {
-    beforeEach(inject(function() {
+    beforeEach(inject(function(datepickerConfig) {
       $rootScope.date = null;
+      $rootScope.nextIconClass = datepickerConfig.nextIconClass;
+      $rootScope.prevIconClass = datepickerConfig.prevIconClass;
       element = $compile('<datepicker ng-model="date"></datepicker>')($rootScope);
       $rootScope.$digest();
     }));
@@ -1830,6 +1832,17 @@ describe('datepicker directive', function () {
 
     it('is shows rows with days', function() {
       expect(element.find('tbody').find('tr').length).toBeGreaterThan(3);
+    });
+
+    it('has next and previous icons', function () {
+
+      expect($rootScope.nextIconClass).toEqual('glyphicon glyphicon-chevron-right');
+      expect($rootScope.prevIconClass).toEqual('glyphicon glyphicon-chevron-left');
+
+      var nextIconClassSelector = $rootScope.nextIconClass.split(' ').map(function (c) { return '.' + c; }).join('');
+      var prevIconClassSelector = $rootScope.prevIconClass.split(' ').map(function (c) { return '.' + c; }).join('');
+      expect(element.find('thead').find(nextIconClassSelector).length).toBe(1);
+      expect(element.find('thead').find(prevIconClassSelector).length).toBe(1);
     });
 
     it('sets default 00:00:00 time for selected date', function() {
