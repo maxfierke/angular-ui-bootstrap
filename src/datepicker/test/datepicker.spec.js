@@ -1467,6 +1467,14 @@ describe('datepicker directive', function () {
           assignElements(wrapElement);
           expect(dropdownEl.find('li').length).toBe(1);
         });
+
+        it('should remove clear button', function ()  {
+          $rootScope.showClearBtn = false;
+          var wrapElement = $compile('<div><input ng-model="date" datepicker-popup show-clear-btn="showClearBtn"><div>')($rootScope);
+          $rootScope.$digest();
+          assignElements(wrapElement);
+          expect(dropdownEl.find('li > .btn-group .btn').length).toBe(1);
+        });
       });
 
       describe('`ng-change`', function() {

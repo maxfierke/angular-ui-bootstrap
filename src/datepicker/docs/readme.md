@@ -99,6 +99,10 @@ Specific settings for the `datepicker-popup`, that can globally configured throu
  	_(Default: true)_ :
  	Whether to display a button bar underneath the datepicker.
 
+ * `show-clear-btn`
+ 	_(Default: true)_ :
+ 	Whether to display the clear button.
+
  * `current-text`
  	_(Default: 'Today')_ :
  	The text to display for the current day button.

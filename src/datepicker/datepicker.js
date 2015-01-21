@@ -432,7 +432,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   closeText: 'Done',
   closeOnDateSelection: true,
   appendToBody: false,
-  showButtonBar: true
+  showButtonBar: true,
+  showClearBtn: true
 })
 
 .directive('datepickerPopup', ['$compile', '$parse', '$document', '$position', 'dateFilter', 'dateParser', 'datepickerPopupConfig',
@@ -453,6 +454,7 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
           appendToBody = angular.isDefined(attrs.datepickerAppendToBody) ? scope.$parent.$eval(attrs.datepickerAppendToBody) : datepickerPopupConfig.appendToBody;
 
       scope.showButtonBar = angular.isDefined(attrs.showButtonBar) ? scope.$parent.$eval(attrs.showButtonBar) : datepickerPopupConfig.showButtonBar;
+      scope.showClearBtn = angular.isDefined(attrs.showClearBtn) ? scope.$parent.$eval(attrs.showClearBtn) : datepickerPopupConfig.showClearBtn;
 
       scope.getText = function( key ) {
         return scope[key + 'Text'] || datepickerPopupConfig[key + 'Text'];
