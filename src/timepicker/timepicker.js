@@ -6,7 +6,9 @@ angular.module('ui.bootstrap.timepicker', [])
   showMeridian: true,
   meridians: null,
   readonlyInput: false,
-  mousewheel: true
+  mousewheel: true,
+  upIconClass: 'glyphicon glyphicon-chevron-up',
+  downIconClass: 'glyphicon glyphicon-chevron-down'
 })
 
 .controller('TimepickerController', ['$scope', '$attrs', '$parse', '$log', '$locale', 'timepickerConfig', function($scope, $attrs, $parse, $log, $locale, timepickerConfig) {
@@ -62,6 +64,9 @@ angular.module('ui.bootstrap.timepicker', [])
       }
     });
   }
+
+  $scope.upIconClass = timepickerConfig.upIconClass;
+  $scope.downIconClass = timepickerConfig.downIconClass;
 
   // Get $scope.hours in 24H mode if valid
   function getHoursFromTemplate ( ) {

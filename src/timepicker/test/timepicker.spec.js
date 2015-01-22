@@ -690,6 +690,26 @@ describe('timepicker directive', function () {
     });
   });
 
+  describe('setting timepickerConfig icon classes', function () {
+    var originalConfig = {};
+    beforeEach(inject(function(_$compile_, _$rootScope_, timepickerConfig) {
+      angular.extend(originalConfig, timepickerConfig);
+      timepickerConfig.upIconClass = 'glyphicon glyphicon-chevron-up';
+      timepickerConfig.downIconClass = 'glyphicon glyphicon-chevron-down';
+      element = $compile('<timepicker ng-model="time"></timepicker>')($rootScope);
+      $rootScope.$digest();
+    }));
+    afterEach(inject(function(timepickerConfig) {
+      // return it to the original state
+      angular.extend(timepickerConfig, originalConfig);
+    }));
+
+    it('uses the configured icon classes', function () {
+      expect(element.find('tr > td > .btn > .glyphicon.glyphicon-chevron-up').length).toBe(2);
+      expect(element.find('tr > td > .btn > .glyphicon.glyphicon-chevron-down').length).toBe(2);
+    });
+  });
+
   describe('user input validation', function () {
     var changeInputValueTo;
 
