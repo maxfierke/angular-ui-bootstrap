@@ -4,7 +4,7 @@ angular.module('ui.bootstrap.dropdown', [])
   openClass: 'open'
 })
 
-.service('dropdownService', ['$document', function($document) {
+.service('dropdownService', ['$document', '$timeout', function($document, $timeout) {
   var openScope = null;
 
   this.open = function( dropdownScope ) {
@@ -38,7 +38,7 @@ angular.module('ui.bootstrap.dropdown', [])
         return;
     }
 
-    openScope.$apply(function() {
+    $timeout(function() {
       openScope.isOpen = false;
     });
   };

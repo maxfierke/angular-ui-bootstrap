@@ -1,23 +1,33 @@
 describe('dropdownToggle', function() {
-  var $compile, $rootScope, $document, element;
+  var $compile, $rootScope, $document, $timeout, element;
 
   beforeEach(module('ui.bootstrap.dropdown'));
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_, _$timeout_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $document = _$document_;
+    $timeout = _$timeout_;
   }));
+
+  var processTimeout = function () {
+    try {
+      $timeout.flush();
+    } catch (e) {}
+    $rootScope.$digest();
+  };
 
   var clickDropdownToggle = function(elm) {
     elm = elm || element;
     elm.find('a[dropdown-toggle]').click();
+    processTimeout();
   };
 
   var triggerKeyDown = function (element, keyCode) {
     var e = $.Event('keydown');
     e.which = keyCode;
     element.trigger(e);
+    processTimeout();
   };
 
   var isFocused = function(elm) {
@@ -49,6 +59,7 @@ describe('dropdownToggle', function() {
 
       var optionEl = element.find('ul > li').eq(0).find('a').eq(0);
       optionEl.click();
+      processTimeout();
       expect(element.hasClass('open')).toBe(false);
       element.remove();
     });
@@ -57,6 +68,7 @@ describe('dropdownToggle', function() {
       clickDropdownToggle();
       expect(element.hasClass('open')).toBe(true);
       $document.click();
+      processTimeout();
       expect(element.hasClass('open')).toBe(false);
     });
 
